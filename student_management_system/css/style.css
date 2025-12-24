@@ -1,0 +1,161 @@
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+nav{
+    position: fixed;
+    background-color: skyblue;
+    height: 70px;
+    width: 100%;
+    z-index: 1;
+}
+.logo{
+    font-size: 25px;
+    position: relative;
+    left: 5%;
+    color: white;
+    font-weight: bold;
+    line-height: 70px;
+    text-align: center;
+}
+ul{
+    position: relative;
+    float: right;
+    margin-right:20px ;
+}
+ul li{
+    display: inline-block;
+    margin: 0 5px;
+    line-height: 70px;
+}
+ul li a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 17px; ;
+}
+
+
+.main_imag{
+    width: 100%;
+    height: 300px;
+    object-fit: cover; 
+    display: block;
+}
+ .img_text{
+    position:absolute ;
+    top: 20%;
+    left: 30%;
+    color: white;
+    background-color:midnightblue;
+    padding-right:20px ;
+    padding-left: 20px;
+    font-size: 45px;
+ }
+ .welcome_img{
+    width: 100%;
+    height:250px;
+ }
+  .container{
+    width: 100%;
+    padding-top: 70px;
+    
+  }
+  .teacher{
+    width: 100%;
+    height: 200px;
+  }
+    .course{
+    width: 100%;
+    height: 200px;
+  }
+  .label_text{
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    padding: 10px;
+
+  }
+  .input_deg{
+    width:30% ;
+    height: 40px;
+    border-radius: 25px;
+    border: 2px solid midnightblue;
+  }
+  .adm_int{
+    padding-top: 10px;
+  }
+  .input_txt{
+     width:30% ;
+    height: 120px;
+    border-radius: 25px;
+    border: 2px solid midnightblue; 
+  }
+  #submit{
+    position: relative;
+    width: 15%;
+    left: 5%;
+    margin-bottom:35px;
+  }
+
+
+   .adm{
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
+ 
+ 
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+}
+   .form_deg{
+        padding-top: 200px;
+        margin-left: 5%;
+    }
+
+    .lable_deg{
+      display: inline-block;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      color: skyblue;
+      text-align: right; 
+    } 
+   .login_form{
+    background-color: black;
+    width:400px ;
+    padding-top: 70px;
+    padding-bottom: 70px;
+   }
+   
+   .title_deg{
+    background-color:skyblue ;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    width:400px ;
+   padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+
+   }
+   .body_deg{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+
+   }
+   
