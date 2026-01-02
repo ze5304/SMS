@@ -76,7 +76,7 @@ CREATE TABLE admission (
     message TEXT
 );
 
--- =========================
+
 -- SAMPLE DATA
 -- =========================
 
