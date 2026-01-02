@@ -40,11 +40,12 @@ if(isset($_POST['update_profile'])){
                password='$password'
                WHERE id='$student_id'";
 
-    if(mysqli_query($conn,$update)){
-        $_SESSION['username'] = $username; // update session
-        header("location:student_profile.php");
-        exit();
-    }
+   if(mysqli_query($conn,$update)){
+    $_SESSION['username'] = $username; // update session
+    header("location:studenthome.php");
+    exit();
+}
+
 }
 ?>
 

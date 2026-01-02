@@ -6,12 +6,11 @@ if(!$conn){
     die("Database connection error");
 }
 
-/* ================= LOGIN PROCESS ================= */
+
 if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    /* ===== 1️⃣ CHECK STUDENT ===== */
     $student_sql = "SELECT * FROM students 
                     WHERE username='$username' AND password='$password'";
     $student_res = mysqli_query($conn,$student_sql);
@@ -19,7 +18,7 @@ if(isset($_POST['login'])){
     if(mysqli_num_rows($student_res)==1){
         $student = mysqli_fetch_assoc($student_res);
 
-        $_SESSION['student_id'] = $student['id'];   // ⭐ IMPORTANT
+        $_SESSION['student_id'] = $student['id'];   
         $_SESSION['username']   = $student['username'];
         $_SESSION['usertype']   = 'student';
 
@@ -27,7 +26,7 @@ if(isset($_POST['login'])){
         exit();
     }
 
-    /* ===== 2️⃣ CHECK TEACHER / ADMIN ===== */
+  
     $user_sql = "SELECT * FROM user 
                  WHERE username='$username' AND password='$password'";
     $user_res = mysqli_query($conn,$user_sql);
@@ -48,7 +47,7 @@ if(isset($_POST['login'])){
         }
     }
 
-    /* ===== LOGIN FAILED ===== */
+   
     $_SESSION['loginMessage'] = "Invalid username or password";
 }
 ?>

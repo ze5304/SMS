@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $name = $_POST['username'];
     $pass = $_POST['password'];
 
-    // check user table
+  
     $sql = "SELECT * FROM user 
             WHERE username='$name' 
             AND password='$pass'";
@@ -21,10 +21,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(mysqli_num_rows($result)==1){
         $row = mysqli_fetch_assoc($result);
 
-        /* ===== STUDENT ===== */
+      
         if($row['usertype']=="student"){
 
-            // 🔴 GET student_id from students table
+           
             $s_q = mysqli_query($conn,
                 "SELECT id FROM students WHERE username='$name'"
             );
@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             exit();
         }
 
-        /* ===== ADMIN ===== */
+     
         else if($row['usertype']=="admin"){
             $_SESSION['username']=$name;
             $_SESSION['usertype']="admin";
@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             exit();
         }
 
-        /* ===== TEACHER ===== */
+    
         else if($row['usertype']=="teacher"){
             $_SESSION['username']=$name;
             $_SESSION['usertype']="teacher";
