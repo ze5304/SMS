@@ -13,7 +13,7 @@
     <a href="add_student.php">Add student</a>
 </li>
 <li>
-    <a href="veiw_student.php">view student</a>
+    <a href="admin_veiw_student.php">view student</a>
 </li>
 <li>
     <a href="admin_add_teacher.php">Add Teacher</a>

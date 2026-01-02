@@ -48,26 +48,27 @@ $resulte = mysqli_query($conn, $sql);
             <th>Message</th>
         </tr>
 
-        <?php
-        // 2. Fetch each row
-        while($info = mysqli_fetch_assoc($resulte)){
-             ?>
-           <tr>
-                    <td style='padding:10px;'>
-                        <?php echo "{$info['name']}"?>
-                    </td>
-                    <td style='padding:10px;'><?php echo "{$info['name']}"?>
-                </td>
-                    <td style='padding:10px;'><?php echo "{$info['name']}"?>
-                </td>
-                    <td style='padding:10px;'><?php echo "{$info['name']}"?>
-                </td>
-                 </tr>
-          <?php       
-          
-       
-                }
-           ?>
+       <?php
+while($info = mysqli_fetch_assoc($resulte)){
+?>
+<tr>
+    <td style="padding:10px;">
+        <?php echo $info['name']; ?>
+    </td>
+    <td style="padding:10px;">
+        <?php echo $info['email']; ?>
+    </td>
+    <td style="padding:10px;">
+        <?php echo $info['phone']; ?>
+    </td>
+    <td style="padding:10px;">
+        <?php echo $info['message']; ?>
+    </td>
+</tr>
+<?php
+}
+?>
+
 
     </table>
     </center>

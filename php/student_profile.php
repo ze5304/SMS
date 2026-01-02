@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['student_id'])){
     header("location:login.php");
     exit();
 }
@@ -11,35 +11,43 @@ if($_SESSION['usertype'] != 'student'){
     exit();
 }
 
-$data = mysqli_connect("localhost","root","","schoolproject");
+$conn = mysqli_connect("localhost","root","","schoolproject");
 
-$name = $_SESSION['username'];
+$student_id = $_SESSION['student_id'];
 
-$sql = "SELECT * FROM user WHERE username='$name'";
-$result = mysqli_query($data,$sql);
+/* ===== FETCH PROFILE ===== */
+$sql = "SELECT * FROM students WHERE id='$student_id'";
+$result = mysqli_query($conn,$sql);
 $info = mysqli_fetch_assoc($result);
 
+if(!$info){
+    echo "Profile not found";
+    exit();
+}
+
+/* ===== UPDATE PROFILE ===== */
 if(isset($_POST['update_profile'])){
-    $s_name     = $_POST['name'];
-    $s_email    = $_POST['email'];
-    $s_phone    = $_POST['phone'];
-    $s_password = $_POST['password'];
 
-    $sql = "UPDATE user SET
-            username='$s_name',
-            email='$s_email',
-            phone='$s_phone',
-            password='$s_password'
-            WHERE username='$name'";
+    $username = $_POST['name'];
+    $email    = $_POST['email'];
+    $phone    = $_POST['phone'];
+    $password = $_POST['password'];
 
-    $result2 = mysqli_query($data,$sql);
+    $update = "UPDATE students SET
+               username='$username',
+               email='$email',
+               phone='$phone',
+               password='$password'
+               WHERE id='$student_id'";
 
-    if($result2){
+    if(mysqli_query($conn,$update)){
+        $_SESSION['username'] = $username; // update session
         header("location:student_profile.php");
         exit();
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -70,40 +78,43 @@ if(isset($_POST['update_profile'])){
 </head>
 <body>
   <?php
-     include'sudent_sidvar.php';
-       ?>
+include 'student_sidebar.php';
+?>
+
        <div class="main-content">
         <center>
             <h1>Student Update profile </h1>
             <br><br>
-       <form action="" method="POST">
-        <div class="div_deg">
-        <div>
-            <label>name</label>
-            <input type="text" name="name" value="<?php
-            echo "{$info['username']}"
-            ?>">
-        </div>
-        <div>
-            <label>email</label>
-            <input type="email" name="email" value="<?php
-            echo "{$info['email']}"?>">
-        </div>
-        <div>
-            <label>phone</label>
-            <input type="number" name="phone" value="<?php
-            echo "{$info['phone']}"?>">
-        </div>
-        <div>
-            <label>password</label>
-            <input type="text" name="password" value="<?php
-            echo "{$info['password']}"?>">
-        </div>
-        <div>
-            <input type="submit" class="ntn btn-primary" name="update_profile" value="update">
-        </div>
-        </div>
-       </form>
+      <form method="POST">
+<div class="div_deg">
+
+<div>
+<label>Name</label>
+<input type="text" name="name" value="<?= $info['username']; ?>">
+</div>
+
+<div>
+<label>Email</label>
+<input type="email" name="email" value="<?= $info['email']; ?>">
+</div>
+
+<div>
+<label>Phone</label>
+<input type="number" name="phone" value="<?= $info['phone']; ?>">
+</div>
+
+<div>
+<label>Password</label>
+<input type="text" name="password" value="<?= $info['password']; ?>">
+</div>
+
+<div>
+<input type="submit" name="update_profile" class="btn btn-primary" value="Update Profile">
+</div>
+
+</div>
+</form>
+
        </center>
        </div>
 

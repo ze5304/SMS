@@ -1,69 +1,74 @@
 <?php
 session_start();
-error_reporting(0);
 
-if(!isset($_SESSION['username'])){
+/* ===== CHECK STUDENT LOGIN ===== */
+if(
+    !isset($_SESSION['student_id']) ||
+    $_SESSION['usertype'] != 'student'
+){
     header("location:login.php");
     exit();
 }
-elseif($_SESSION['usertype']=='admin'){
-    header("location:login.php");
-    exit();
+
+$conn = mysqli_connect("localhost","root","","schoolproject");
+if(!$conn){
+    die("DB error");
 }
 
-$host="localhost";
-$user="root";
-$password="";
-$db="schoolproject";
-$data = mysqli_connect($host,$user,$password,$db);
+$student_id = $_SESSION['student_id'];
 
-$username = $_SESSION['username'];
-$sql = "SELECT * FROM results WHERE student_username='$username'";
-$result = mysqli_query($data,$sql);
+/* ===== FETCH ONLY THIS STUDENT RESULTS ===== */
+$sql = "SELECT 
+            courses.name AS course_name,
+            result.mark
+        FROM result
+        JOIN courses ON result.course_id = courses.id
+        WHERE result.student_id = '$student_id'";
+
+$result = mysqli_query($conn,$sql);
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>My Results</title>
-    <?php include 'student_css.php'; ?>
-    <style>
-     tr{
-        width: 100%;
-
-     }
-     th{
-        padding:10px;
-        font-size:20px;
-        border:solid 1px;
-        background-color: skyblue;
-        width: 25%;
-     }
-
-
-    </style>
+<title>My Results</title>
+<?php include 'student_css.php'; ?>
 </head>
 <body>
 
-<?php include 'sudent_sidvar.php'; ?>
+<?php include 'student_sidebar.php'; ?>
 
 <div class="main-content">
-    <center>
-    <h1> Veiw My Results score</h1> <br><br>
+<h1>My Results</h1>
 
-    <table>
-        <tr>
-            <th>Course</th>
-            <th>Marks</th>
-        </tr>
-        <?php while($row = $result->fetch_assoc()){ ?>
-        <tr>
-            <td><?php echo $row['course_name']; ?></td>
-            <td><?php echo $row['marks']; ?></td>
-        </tr>
-        <?php } ?>
-    </table>
-     </center>
+<table border="1" width="70%" cellpadding="10">
+<tr>
+    <th>Course</th>
+    <th>Mark</th>
+</tr>
+
+<?php
+if(mysqli_num_rows($result) > 0){
+    while($row = mysqli_fetch_assoc($result)){
+?>
+<tr>
+    <td><?= htmlspecialchars($row['course_name']); ?></td>
+    <td style="text-align:center;font-weight:bold;">
+        <?= htmlspecialchars($row['mark']); ?>
+    </td>
+</tr>
+<?php
+    }
+}else{
+?>
+<tr>
+    <td colspan="2" style="text-align:center;">
+        No results available
+    </td>
+</tr>
+<?php } ?>
+
+</table>
 </div>
 
 </body>

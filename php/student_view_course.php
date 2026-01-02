@@ -2,15 +2,15 @@
 session_start();
 error_reporting(0);
 
-// student login check
-if(!isset($_SESSION['username'])){
-    header("location:login.php");
-    exit();
-}
-elseif($_SESSION['usertype']=='admin'){
-    header("location:login.php");
-    exit();
-}
+// // student login check
+// if(!isset($_SESSION['username'])){
+//     header("location:login.php");
+//     exit();
+// }
+// elseif($_SESSION['usertype']=='admin'){
+//     header("location:login.php");
+//     exit();
+// }
 
 // DB connection
 $host="localhost";
@@ -50,7 +50,7 @@ $result = mysqli_query($data,$sql);
 </head>
 <body>
 
-<?php include 'sudent_sidvar.php'; ?>
+<?php include 'student_sidebar.php'; ?>
 
 <div class="main-content">
     <h1>Available Courses</h1>

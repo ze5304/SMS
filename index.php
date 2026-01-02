@@ -61,7 +61,7 @@ if (isset($_SESSION['message'])) {
      
 
         <div class="col-md-4">
-      <img class="welcome_img" src="school2.jpg" alt="">
+      <img class="welcome_img" src="woldia-university-503075.jpg" alt="">
         </div>
         <div class="col-md-8">
   <h1>welcome to woldia university</h1>

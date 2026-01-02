@@ -1,32 +1,32 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])){
+
+/* ===== CHECK STUDENT LOGIN ===== */
+if(
+    !isset($_SESSION['student_id']) ||
+    !isset($_SESSION['usertype']) ||
+    $_SESSION['usertype'] != 'student'
+){
     header("location:login.php");
+    exit();
 }
-elseif($_SESSION['usertype']=='admin'){
-   header("location:login.php");
-}?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>student dashboard</title>
-    <?php
-     include'student_css.php';
-       ?>
- 
+    <title>Student Dashboard</title>
+    <?php include 'student_css.php'; ?>
 </head>
 <body>
-  <?php
-     include'sudent_sidvar.php';
-       ?>
 
-   <div class="main-content">
-    <h1>student home</h1>
-    
-       
-   </div>
+<?php include 'student_sidebar.php'; ?>
+
+<div class="main-content">
+    <h1>Student Home</h1>
+</div>
+
 </body>
 </html>

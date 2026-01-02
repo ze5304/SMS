@@ -32,8 +32,9 @@ if (isset($_POST['add_student'])) {
 
     } else {
 
-        $sql = "INSERT INTO user (username, email, phone, usertype, `password`)
-                VALUES ('$username', '$email', '$phone', '$usertype', '$password')";
+        $sql = "INSERT INTO students (username, email, phone, password)
+        VALUES ('$username', '$email', '$phone', '$password')";
+
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Data upload success');</script>";

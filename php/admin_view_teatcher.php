@@ -34,7 +34,7 @@ $result=mysqli_query($data,$sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>student dashboard</title>
+    <title>Admin Dashboard</title>
       
       <?php
      include'admin_css.php';
@@ -81,7 +81,7 @@ $result=mysqli_query($data,$sql);
         </td>
         <td class="table_td"><?php echo"{$info['description']}"?></td>
        <td class="table_td">
-    <img src="<?php echo $info['image']; ?>" alt="Teacher Image" width="100">
+     <img src="../<?php echo $info['image']; ?>" width="100">
     
     <td class="table_td">
     <?php

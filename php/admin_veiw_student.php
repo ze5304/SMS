@@ -18,7 +18,8 @@ $password="";
 $db="schoolproject";
 $data=mysqli_connect($host,$user,$password,$db);
 
-$SQL="SELECT * FROM user";
+$SQL = "SELECT * FROM students";
+
 $result=mysqli_query($data,$SQL);
 ?>
 
@@ -54,7 +55,7 @@ unset(  $_SESSION['message']);
                     <th style="padding:20px; font-size:15px;">USERNAME</th>
                     <th style="padding:20px; font-size:15px;">Phone</th>
                     <th style="padding:20px; font-size:15px;">Email</th>
-                    <th style="padding:20px; font-size:15px;">USERTYPE</th>
+
                      <th style="padding:20px; font-size:15px;">PASSWORD</th>
                      <th style="padding:20px; font-size:15px;">DELETE</th>
                      <th style="padding:20px; font-size:15px;">update</th>   
@@ -67,12 +68,11 @@ while($info = mysqli_fetch_assoc($result)){
     <td style="padding:2px;"><?php echo $info['username']; ?></td>
     <td style="padding:2px;"><?php echo $info['phone']; ?></td>
     <td style="padding:2px;"><?php echo $info['email']; ?></td>
-    <td style="padding:2px;"><?php echo $info['usertype']; ?></td>
     <td style="padding:2px;"><?php echo $info['password']; ?></td>
      <td style="padding:2px;"><?php echo " <a class='btn btn-danger' onclick=\"javascript:return confirm('Are you sure delete this');\" href='delete.php?student_id={$info['id']}'>delete</a>" ; 
      
      ?></td>
-      <td style="padding:2px;"><?php echo "<a class='btn btn-primary' href='Updat_student.php?student_id={$info['id']}'>Update </a>"; ?></td>
+      <td style="padding:2px;"><?php echo "<a class='btn btn-primary' href='admin_update_student.php?student_id={$info['id']}'>Update </a>"; ?></td>
 </tr>
  
 </tr>
