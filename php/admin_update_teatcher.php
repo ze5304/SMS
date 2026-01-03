@@ -107,16 +107,17 @@ if($_GET['teacher_id']){
         ?> 
         </textarea>
       </div>
-        <div>
-        <label>teacher old image</label>
-<?php
-if(!empty($info['image'])){
-    echo "<img src='uploads/".$info['image']."' width='120'>";
-}
-?>
+        
+                 
+           <div>
+            <label>Old Image</label>
+            <?php if(!empty($info['image'])){ ?>
+                <img src="../<?php echo $info['image']; ?>" width="120">
+            <?php } ?>
+        </div>
 
+   
 
-      </div>
         <div>
         <label>choose Teacher naw image</label>
         <input type="file" name="image">
